@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@font-face {
+font-family: 'Louis George Cafe';
+src: url('Louis George Cafe.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
+.nomsite { 	
+	font: 80px Verdana;
+	text-align: center;
+	padding-bottom:  200px;
+}
+
+#employe{ border-radius:12px 0 12px 0;
+	border:none;
+	color:#fff;
+	font-family: 'Louis George Cafe';
+	font-weight: 100;
+	padding:6px 0 6px 0;
+	background: #4481f1 ;                  
+	display : block;
+	margin : auto;
+		width:50%;
+	font-size: 1.6em;
+}
+
+#administration{border-radius:12px 0 12px 0;
+	border:none;
+	color:#fff;
+	font-family: 'Louis George Cafe';
+	font-weight: 100;
+	padding:6px 0 6px 0;
+	background:  #d34836;
+	display : block;
+	margin : auto;
+		width:50%;
+	font-size: 1.6em;
+}
+
+#leesi { display : block;
+	margin-left: 420px;
+	padding-bottom: 10px;
+}
+
+#titre { font-family: 'Louis George Cafe';
+	font-weight: 600;
+}
+
+
+
+
+
+
+

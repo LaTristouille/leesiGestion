@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+font-family: 'Louis George Cafe';
+src: url('Louis George Cafe.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
+#erreur { font-family: 'Louis George Cafe';
+	font-size: 1.3em;
+	display : block;
+	text-align: center;
+	margin-top: 50px;
+	margin-left: auto;
+    margin-right: auto; 
+	color: #FF0000;
+}

@@ -1,0 +1,62 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+font-family: 'Louis George Cafe';
+src: url('Louis George Cafe.ttf');
+font-weight: normal;
+font-style: normal;
+}
+
+#erreur { font-family: 'Louis George Cafe';
+	font-size: 1.5em;
+	display : block;
+	text-align: center;
+	margin-top: 50px;
+	margin-left: auto;
+    margin-right: auto }
+
+#t { font-family: 'Louis George Cafe';
+	font-size: 1.5em;
+	display : block;
+	text-align: center;
+	margin-top: 50px;
+	margin-left: auto;
+    margin-right: auto }
+
+#retour {
+	border-radius:12px 0 12px 0;
+	background: #4481f1;
+	border:none;
+	color:#fff;
+	font:bold 12px Louis George Cafe;
+	padding:6px 0 6px 0;
+	font-weight: 100;
+	width:150px;
+	height:30px;
+}
+
+#deco  {
+	border-radius:12px 0 12px 0;
+	background: #4481f1;
+	border:none;
+	color:#fff;
+	font:bold 12px Louis George Cafe;
+	padding:6px 0 6px 0;
+	font-weight: 100;
+	width:170px;
+	height:30px;
+}
+
+#eve { 
+	border-radius:12px 0 12px 0;
+	background: #d34836;
+	border:none;
+	color:#fff;
+	font:bold 12px Louis George Cafe;
+	padding:6px 0 6px 0;
+	font-weight: 100;
+	width:190px;
+	height:30px;
+}
+
