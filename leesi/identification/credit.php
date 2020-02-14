@@ -1,6 +1,6 @@
 <?php
-require_once( 'C:\wamp64\www\leesi\connexion.php' );
-require_once( 'C:\wamp64\www\leesi\iden\connexionPDO.php' );
+require_once( '../db/connexion.php' );
+require_once( '../db/connexionPDO.php' );
 session_start();
 
 $connect = $PDO;

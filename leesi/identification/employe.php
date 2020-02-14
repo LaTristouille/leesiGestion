@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\connexion.php'); session_start();
+<?php require_once('../db/connexion.php'); session_start();
 ?>
 <!doctype html>
 
@@ -17,9 +17,9 @@
 	
 	<!-- Création des champs pour entrer les identifiants -->
 	
-	<input type="button" id="retour"  onclick=window.location.href='http://localhost/leesi/'; value="Retour"  >
+	<input type="button" id="retour"  onclick="window.location.href='../'" value="Retour"  >
 	
-	<h1 id="titre">  Entrez vos identifiants employé </h1>
+	<h1 id="titre">Entrez vos identifiants employé </h1>
 	
 	<hr style="width: 130px; color: black; background-color: #4481f1; align: 'center'; height: 2px;" />
 	
@@ -27,14 +27,13 @@
 	
 		<form name="user" method="post" action="">
 		<input  id="user" type="text" name="user" placeholder="Entrez un utilisateur" />
-				
-		<form name=mdp method="post" action="">
-		<input id="mdp" type="text" name="mdp" placeholder="Entrez un mot de passe"/>
+		<input id="mdp" type="password" name="mdp" placeholder="Entrez un mot de passe"/>
 			
 			<!-- création du bouton pour valider les identifiants--> 
 			
-			   <input class="bt" type="submit" name="btsubmit" onClick="identification();" />
-		
+		<input class="bt" type="submit" name="btsubmit" />
+		</form>
+	</div>
 			<?php 
 			
 			$user=''; $credit='';
@@ -69,10 +68,13 @@
 				 
 			{ 
 				$_SESSION['Credit'] = $data['Credit'];
-				header('Location: congesAbsences.php'); exit();
+				header('Location: congesAbsences.php'); 
+				exit();
 			 }
 				
-			else {  }
+			else { 
+
+			 }
 }
 		?>		
  

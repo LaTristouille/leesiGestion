@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\iden\connexionPDO.php');
+<?php require_once('../db/connexionPDO.php');
 
 $connect = $PDO;
 
@@ -7,7 +7,7 @@ $data = array();
 $start=$_GET['start'];
 $end=$_GET['end'];
 
-$query = "SELECT * FROM abs ORDER BY id";
+$query = "SELECT * FROM events ORDER BY id";
 
 $statement = $connect->prepare($query);
 

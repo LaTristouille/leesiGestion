@@ -1,5 +1,5 @@
 
-<?php require_once('connexion.php'); ?>
+<?php ?>
 <!doctype html>
 <html>
 <head>
@@ -19,11 +19,11 @@
 	
 	<!-- Création des deux boutons -->
 	
-	 <input type="button" id="employe"  onclick=window.location.href='iden/identification'; value="Ouvrir une session employé"  >
+	 <input type="button" id="employe"  onclick=window.location.href='identification/employe'; value="Ouvrir une session employé"  >
 	
 	<br/> <BR> 
 	
-	<input type="button" id="administration" onclick=window.location.href='iden/Identification2'; value="Ouvrir une session administration">
+	<input type="button" id="administration" onclick=window.location.href='identification/admin'; value="Ouvrir une session administration">
 	
 	<?php
 	

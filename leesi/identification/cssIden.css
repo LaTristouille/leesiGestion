@@ -3,11 +3,10 @@
 
 #user{ 
 	font:Bold 10px Louis George Cafe;
-	background: #FFF ;
-	color:#fff;
+	background: #FFF;
 	display : block;
 	margin-top: 50px;
-		width:40%;
+	width:40%;
 	font-size: 1em;
     margin-left: auto;
     margin-right: auto
@@ -16,7 +15,6 @@
 #mdp{ 
 	font:Bold 10px Louis George Cafe;
 	background: #FFF ;
-	color:#fff;
 	display : block;
 	margin-top: 20px;
 		width:40%;

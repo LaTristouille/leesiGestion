@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\connexion.php'); session_start();
+<?php require_once('../db/connexion.php'); session_start();
 ?>
 <!doctype html>
 

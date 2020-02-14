@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\connexion.php'); session_start();
+<?php require_once('../db/connexion.php'); session_start();
 ?>
 <html lang='en'>
   <head>
@@ -9,17 +9,17 @@
 import dayGridPlugin from 'daygrid'; 
 	
 	  </script>  
-	   <link href='cssConges.css' rel='stylesheet' />
-    <link href='core/main.css' rel='stylesheet' />
-    <link href='daygrid/main.css' rel='stylesheet' />
+	   <link href='../identification/cssConges.css' rel='stylesheet' />
+    <link href='../identification/core/main.css' rel='stylesheet' />
+    <link href='../identification/daygrid/main.css' rel='stylesheet' />
 
-    <script src='core/main.js'></script>
-    <script src='daygrid/main.js'></script>
-	<script src='inte.js'></script>
-	  <script src='interaction/main.esm.js'></script>
-	  	  <script src='interaction/main.min.js'></script>
-	  	  <script src='interaction/main.js'></script>
-	  <script src='interaction/inte.js'></script>
+    <script src='../identification/core/main.js'></script>
+    <script src='../identification/daygrid/main.js'></script>
+	<script src='../identification/inte.js'></script>
+	  <script src='../identification/interaction/main.esm.js'></script>
+	  	  <script src='../identification/interaction/main.min.js'></script>
+	  	  <script src='../identification/interaction/main.js'></script>
+	  <script src='../identification/interaction/inte.js'></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -36,16 +36,16 @@ import dayGridPlugin from 'daygrid';
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: 'loadAbsences.php'})  });
+    events: '../identification/loadAbsences.php'})  });
 		
     </script>
   </head>
   <body>
 	  
 	  	<br />
-	 <input type="button" id="retour"  onclick=window.location.href='http://localhost/leesi/iden/congesAbsences.php'; value="Retour"  >
+	 <input type="button" id="retour"  onclick=window.location.href='../identification/congesAbsences.php'; value="Retour"  >
 	
-	<input type="button" id="deco"  onclick=window.location.href='http://localhost/leesi/iden/identification'; value="Déconnexion"  > 
+	<input type="button" id="deco"  onclick=window.location.href='../identification/employe'; value="Déconnexion"  > 
 	  
 	  <p id="t"><?php echo ("Calendrier des absences")
 	?> 
