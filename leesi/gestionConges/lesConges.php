@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang='en'>
+<?php require_once('../db/connexion.php');  session_start();?>
+
+<html lang='fr'>
   <head>
     <meta charset='utf-8' />
 <script>
@@ -9,17 +10,17 @@ import dayGridPlugin from 'daygrid';
 	
 	  </script>
 	  
-	   <link href='cssConges.css' rel='stylesheet' />
-    <link href='core/main.css' rel='stylesheet' />
-    <link href='daygrid/main.css' rel='stylesheet' />
+	   <link href='../css/cssConges.css' rel='stylesheet' />
+    <link href='../identification/core/main.css' rel='stylesheet' />
+    <link href='../identification/daygrid/main.css' rel='stylesheet' />
 
-    <script src='core/main.js'></script>
-    <script src='daygrid/main.js'></script>
-	<script src='inte.js'></script>
-	  <script src='interaction/main.esm.js'></script>
-	  	  <script src='interaction/main.min.js'></script>
-	  	  <script src='interaction/main.js'></script>
-	  <script src='interaction/inte.js'></script>
+    <script src='../identification/core/main.js'></script>
+    <script src='../identification/daygrid/main.js'></script>
+	<script src='../identification/inte.js'></script>
+	  <script src='../identification/interaction/main.esm.js'></script>
+	  	  <script src='../identification/interaction/main.min.js'></script>
+	  	  <script src='../identification/interaction/main.js'></script>
+	  <script src='../identification/interaction/inte.js'></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -38,7 +39,7 @@ import dayGridPlugin from 'daygrid';
     },
 	
 	   eventRender: function(event, element, view) {$.ajax({
-       url:"credit.php",
+       url:"../evenement/credit.php",
        type:"GET",
 		success: function(data)
         {       
@@ -49,7 +50,7 @@ import dayGridPlugin from 'daygrid';
       })  
     },   
 	// on affiche les événements   
-	events: 'load.php',
+	events: '../evenement/load.php',
     
 	// on ajoute un évenement   
 	selectable:true,
@@ -64,7 +65,7 @@ import dayGridPlugin from 'daygrid';
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD");
       $.ajax({
-       url:"insert.php",
+       url:"../evenement/insert.php",
        type:"POST",
        data:{title:title, start:start, end:end},
        success:function()
@@ -87,7 +88,7 @@ console.log('Error:', data);
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"update.php",
+      url:"../evenement/update.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function(){
@@ -103,7 +104,7 @@ console.log('Error:', data);
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"update.php",
+      url:"../evenement/update.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function()
@@ -121,7 +122,7 @@ console.log('Error:', data);
      {
       var id = event.id;
       $.ajax({
-       url:"delete.php",
+       url:"../evenement/delete.php",
        type:"POST",
        data:{id:id},
        success:function()
@@ -150,9 +151,9 @@ console.log('Error:', data);
   </head>
   <body>
 	  
-	  	<input type="button" id="retour"  onclick=window.location.href='http://localhost/leesi/iden/congesAbs2.php'; value="Retour"  >
+	  	<input type="button" id="retour"  onclick=window.location.href='../identification/congesAbs2.php'; value="Retour"  >
 	
-	<input type="button" id="deco"  onclick=window.location.href='http://localhost/leesi/iden/identification2'; value="Déconnexion"  > 
+	<input type="button" id="deco"  onclick=window.location.href='../identification/admin.php'; value="Déconnexion"  > 
 	  
 	    <p id="t"><?php echo ("Gestion des congés")
 	?> 

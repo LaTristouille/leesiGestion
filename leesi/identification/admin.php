@@ -7,13 +7,13 @@
 <meta charset="utf-8">
 <title>Document sans titre</title>
 
-	<link rel="stylesheet" href="cssIden.css" />
+	<link rel="stylesheet" href="../css/cssIden.css" />
 
 </head>	
 	
 <body>
 	
-	<input type="button" id="retour"  onclick=window.location.href='http://localhost/leesi/'; value="Retour"  >
+	<input type="button" id="retour"  onclick=window.location.href='http://localhost/leesiGestion/leesi/'; value="Retour"  >
 	
 	<h1 id="titre"> Entrez vos identifiants administration </h1>
 	

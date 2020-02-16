@@ -11,9 +11,9 @@
 		import dayGridPlugin from 'daygrid';
 		import frLocale from '@fullcalendar/core/locales/fr';
 	</script>
-	<link href='../identification/cssConges.css' rel='stylesheet'/>
+	<link href='../css/cssConges.css' rel='stylesheet'/>
 	<link href='../identification/core/main.css' rel='stylesheet'/>
-	<link href='../identification/cssErreur.css' rel='stylesheet'/>
+	<link href='../css/cssErreur.css' rel='stylesheet'/>
 	<link href='../identification/daygrid/main.css' rel='stylesheet'/>
 	<script src='../identification/core/main.js'></script>
 	<script src='../identification/daygrid/main.js'></script>
@@ -50,7 +50,7 @@
 			var user = maVar;
 
 			$.ajax( {
-				url: "../identification/credit.php",
+				url: "../evenement/credit.php",
 				type: "POST",
 				data: {
 					credit: credit,
@@ -79,16 +79,12 @@
 					element.find( '.fc-title' ).append( duration );
 					console.log( duration );
 
-
-
 					credit = credit - duration;
 
 					console.log( credit );
 
-
-
 					$.ajax( {
-						url: "../identification/credit.php",
+						url: "../evenement/credit.php",
 						type: "POST",
 						data: {
 							credit: credit,
@@ -108,7 +104,7 @@
 				},
 
 				// on affiche les événements   
-				events: '../identification/load.php',
+				events: '../evenement/load.php',
 
 				// on ajoute un évenement   
 				selectable: true,
@@ -130,7 +126,7 @@
 					var endReal = year + '-' + month + '-' + day;
 					//******************************************************
 					$.ajax( {
-						url: "../identification/insert.php",
+						url: "../evenement/insert.php",
 						type: "POST",
 						data: {
 							title: title,
@@ -157,7 +153,7 @@
 						var title = event.title;
 						var id = event.id;
 						$.ajax( {
-							url: "../identification/update.php",
+							url: "../evenement/update.php",
 							type: "POST",
 							data: {
 								title: title,
@@ -183,7 +179,7 @@
 						var title = event.title;
 						var id = event.id;
 						$.ajax( {
-							url: "../identification/update.php",
+							url: "../evenement/update.php",
 							type: "POST",
 							data: {
 								title: title,
@@ -206,7 +202,7 @@
 					if ( confirm( "Voulez vous vraiment supprimer ce congé ?" ) && ( event.title == maVar ) ) {
 						var id = event.id;
 						$.ajax( {
-							url: "../identification/delete.php",
+							url: "../evenement/delete.php",
 							type: "POST",
 							data: {
 								id: id
@@ -214,7 +210,7 @@
 							success: function () {
 								calendar.fullCalendar( 'refetchEvents' );
 								$.ajax( {
-				url: "../identification/credit.php",
+				url: "../evenement/credit.php",
 				type: "POST",
 				data: {
 					credit: credit,

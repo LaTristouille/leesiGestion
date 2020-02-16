@@ -7,7 +7,7 @@ $data = array();
 $start=$_GET['start'];
 $end=$_GET['end'];
 
-$query = "SELECT * FROM events ORDER BY id";
+$query = "SELECT * FROM abs ORDER BY id";
 
 $statement = $connect->prepare($query);
 

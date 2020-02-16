@@ -9,7 +9,7 @@
 <meta charset="utf-8">
 <title>Document sans titre</title>
 
-	<link rel="stylesheet" href="cssIden.css" />
+	<link rel="stylesheet" href="../css/cssIden.css" />
 
 </head>
 

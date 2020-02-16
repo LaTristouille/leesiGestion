@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\connexion.php'); session_start();
+<?php require_once('../db/connexion.php'); session_start();
 ?>
 <html lang='en'>
   <head>
@@ -9,17 +9,17 @@
 import dayGridPlugin from 'daygrid'; 
 	
 	  </script>  
-	   <link href='cssConges.css' rel='stylesheet' />
-    <link href='core/main.css' rel='stylesheet' />
-    <link href='daygrid/main.css' rel='stylesheet' />
+	   <link href='../css/cssConges.css' rel='stylesheet' />
+    <link href='../css/core/main.css' rel='stylesheet' />
+    <link href='../css/daygrid/main.css' rel='stylesheet' />
 
-    <script src='core/main.js'></script>
-    <script src='daygrid/main.js'></script>
-	<script src='inte.js'></script>
-	  <script src='interaction/main.esm.js'></script>
-	  	  <script src='interaction/main.min.js'></script>
-	  	  <script src='interaction/main.js'></script>
-	  <script src='interaction/inte.js'></script>
+    <script src='../identification/core/main.js'></script>
+    <script src='../identification/daygrid/main.js'></script>
+	<script src='../identification/inte.js'></script>
+	  <script src='../identification/interaction/main.esm.js'></script>
+	  	  <script src='../identification/interaction/main.min.js'></script>
+	  	  <script src='../identification/interaction/main.js'></script>
+	  <script src='../identification/interaction/inte.js'></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -36,7 +36,7 @@ import dayGridPlugin from 'daygrid';
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: 'loadAbsences.php' ,
+    events: '../evenements/loadAbsences.php' ,
 		
  selectable:true,
     selectHelper:true,
@@ -48,7 +48,7 @@ import dayGridPlugin from 'daygrid';
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
       $.ajax({
-       url:"insertAbsences.php",
+       url:"../evenements/insertAbsences.php",
        type:"POST",
        data:{title:title, start:start, end:end},
        success:function()
@@ -67,7 +67,7 @@ import dayGridPlugin from 'daygrid';
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"updateAbsences.php",
+      url:"../evenements/updateAbsences.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function(){
@@ -84,7 +84,7 @@ import dayGridPlugin from 'daygrid';
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"updateAbsences.php",
+      url:"../evenements/updateAbsences.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function()
@@ -101,7 +101,7 @@ import dayGridPlugin from 'daygrid';
      {
       var id = event.id;
       $.ajax({
-       url:"deleteAbs.php",
+       url:"../evenements/deleteAbs.php",
        type:"POST",
        data:{id:id},
        success:function()
@@ -119,9 +119,9 @@ import dayGridPlugin from 'daygrid';
  </head>
  <body>
   <br />
-	 <input type="button" id="retour"  onclick=window.location.href='http://localhost/leesi/iden/congesAbs2.php'; value="Retour"  >
+	 <input type="button" id="retour"  onclick=window.location.href='../identification/congesAbs2.php'; value="Retour"  >
 	
-	<input type="button" id="deco"  onclick=window.location.href='http://localhost/leesi/iden/identification2'; value="Déconnexion"  > 
+	<input type="button" id="deco"  onclick=window.location.href='../identification/admin'; value="Déconnexion"  > 
 	  
 	  <p id="t"><?php echo ("Calendrier des absences")
 	?> 
