@@ -13,7 +13,7 @@
 	
 <body>
 	
-	<input type="button" id="retour"  onclick=window.location.href='http://localhost/leesiGestion/leesi/'; value="Retour"  >
+	<input type="button" id="retour"  onclick=window.location.href='../'; value="Retour"  >
 	
 	<h1 id="titre"> Entrez vos identifiants administration </h1>
 	

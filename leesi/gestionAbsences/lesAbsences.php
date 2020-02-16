@@ -8,16 +8,16 @@
 	
 	  </script>  
 	   <link href='../css/cssConges.css' rel='stylesheet' />
-    <link href='../css/core/main.css' rel='stylesheet' />
-    <link href='../css/daygrid/main.css' rel='stylesheet' />
+    <link href='../identification/core/main.css' rel='stylesheet' />
+    <link href='../identification/daygrid/main.css' rel='stylesheet' />
 
-    <script src='../identification/core/main.js'></script>
-    <script src='../identification/daygrid/main.js'></script>
+    <script src='../identification/core/main.js'>  </script> 
+    <script src='../identification/daygrid/main.js'> </script>
 	  <script src='../identification/interaction/main.esm.js'></script>
 	  	  <script src='../identification/interaction/main.min.js'></script>
 	  	  <script src='../identification/interaction/main.js'></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.css" />
+	<link rel="stylesheet" href="../css/fullcalendar.css" />
+  <link rel="stylesheet" href="../css/bootstrap.css" />
   <script src="../js/jquery-3.4.1.min.js"></script>
     <script src="../js/moment.js"></script>
   <script src="../js/fullcalendar.js"></script>

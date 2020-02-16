@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\iden\connexionPDO.php'); session_start();
+<?php require_once('../db/connexionPDO.php'); session_start();
 
 $connect = $PDO;
 
