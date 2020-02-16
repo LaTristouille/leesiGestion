@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\leesi\iden\connexionPDO.php');
+<?php require_once('../db/connexionPDO.php');
 
 //delete.php
 

@@ -35,7 +35,7 @@ import dayGridPlugin from 'daygrid';
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: '../evenements/loadAbsences.php' ,
+    events: '../evenement/loadAbsences.php' ,
 		
  selectable:true,
     selectHelper:true,
@@ -47,7 +47,7 @@ import dayGridPlugin from 'daygrid';
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
       $.ajax({
-       url:"../evenements/insertAbsences.php",
+       url:"../evenement/insertAbsences.php",
        type:"POST",
        data:{title:title, start:start, end:end},
        success:function()
@@ -66,7 +66,7 @@ import dayGridPlugin from 'daygrid';
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"../evenements/updateAbsences.php",
+      url:"../evenement/updateAbsences.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function(){
@@ -83,7 +83,7 @@ import dayGridPlugin from 'daygrid';
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"../evenements/updateAbsences.php",
+      url:"../evenement/updateAbsences.php",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function()
@@ -100,7 +100,7 @@ import dayGridPlugin from 'daygrid';
      {
       var id = event.id;
       $.ajax({
-       url:"../evenements/deleteAbs.php",
+       url:"../evenement/deleteAbs.php",
        type:"POST",
        data:{id:id},
        success:function()
