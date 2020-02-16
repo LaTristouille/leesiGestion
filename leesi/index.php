@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <title>Document sans titre</title>
-<link rel="stylesheet" href="leesi_style.css" />
+<link rel="stylesheet" href="./css/leesi_style.css" />
 </head>
 
 <body>

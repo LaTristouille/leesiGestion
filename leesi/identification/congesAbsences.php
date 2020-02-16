@@ -7,7 +7,7 @@
 
 	<title>Document sans titre</title>
 	
-	<link rel="stylesheet" href="cssAbs" />
+	<link rel="stylesheet" href="../css/cssAbs" />
 
 	</head>
 
