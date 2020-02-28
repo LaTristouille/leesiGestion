@@ -186,6 +186,16 @@
 							}
 						} );
 					} else {
+
+						$.ajax( {
+							url: "../evenement/load.php",
+							type: "GET",
+							success: function () {
+								calendar.fullCalendar( 'refetchEvents' );
+							}
+						} )
+
+
 						alert( "Le congé n'a pas été modifié, veuillez séléctionnez votre propre congé" )
 					}
 				},
