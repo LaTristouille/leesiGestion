@@ -21,12 +21,49 @@
 	 <script src="../js/fullcalendar.js"></script>
 	<script src='../js/locales-all.js'></script>
 	<script src='../js/fr.js'></script>
+	<style> 
+	.adminColor{
+
+		background-color : green;
+
+	} 
+	
+	.congeColor{
+
+		color : white !important;
+	}
+
+	</style>
+
 
 	<?php  $long = strlen($_SESSION['iden']) ?>
 	<?php $rest = substr($_SESSION['iden'], -$long); ?>
 
 	<script>
+
+		function getDateReal (startCalendar,endCalendar) {
+		
+			var start = $.fullCalendar.formatDate( startCalendar, "Y-MM-DD" );
+			var end = $.fullCalendar.formatDate( endCalendar, "Y-MM-DD" );
+
+			var jsEndDate = new Date( end );
+			var realEndDateTime=jsEndDate.getTime()-(24*60*60*1000);
+			var realEndDate = new Date(realEndDateTime);
+			//***********************************
+			var day = new String( realEndDate.getDate() ).padStart( 2, 0 );
+			var month = new String( realEndDate.getMonth() + 1 ).padStart( 2, 0 );;
+			var year = realEndDate.getFullYear();
+
+			var endReal = year + '-' + month + '-' + day;
+
+			return {start:start,
+			end:end,
+			endReal:endReal,
+			}
+		}
+
 		$( document ).ready( function () {
+
 			//on récupère le reste des jours de congés 
 			<?php  $longe = strlen($_SESSION['Credit']) ?>
 			<?php $reste = substr($_SESSION['Credit'], -$long); ?>
@@ -34,6 +71,7 @@
 			var credit = <?php echo json_encode($reste); ?>;
 			var maVar = <?php echo json_encode($rest); ?>;
 			var user = maVar;
+
 
 			$.ajax( {
 				url: "../evenement/credit.php",
@@ -68,8 +106,16 @@
 				//récupérer le nombre de jours de congés pris avec event render
 				eventRender: function ( event, element, view ) {
 					// calendrier Ok
+					
 					var duration = moment.duration( event.end - event.start ).days();
-					element.find( '.fc-title' ).append( duration );
+					element.find( '.fc-title' ).append(" " + duration );
+					if (event.alert==1 ) {
+						
+						element.addClass("adminColor")
+					}
+
+					element.addClass("congeColor");
+
 					console.log( duration );
 
 					credit = credit - duration;
@@ -102,30 +148,20 @@
 				// on ajoute un évenement   
 				selectable: true,
 				selectHelper: true,
+
 				select: function ( startCalendar, endCalendar ) { // fin selection utilisateur : on envoie 
 
-					var title = maVar;
-					var start = $.fullCalendar.formatDate( startCalendar, "Y-MM-DD" );
-					var end = $.fullCalendar.formatDate( endCalendar, "Y-MM-DD" );
-
-					var jsEndDate = new Date( end );
-					var realEndDateTime=jsEndDate.getTime()-(24*60*60*1000);
-					var realEndDate = new Date(realEndDateTime);
-					//***********************************
-					var day = new String( realEndDate.getDate() ).padStart( 2, 0 );
-					var month = new String( realEndDate.getMonth() + 1 ).padStart( 2, 0 );;
-					var year = realEndDate.getFullYear();
-
-					var endReal = year + '-' + month + '-' + day;
-					//******************************************************
+					var result = getDateReal( startCalendar, endCalendar )
+					
 					$.ajax( {
 						url: "../evenement/insert.php",
 						type: "POST",
 						data: {
-							title: title,
-							start: start,
-							end: end,
-							endReal: endReal  //*****************************
+							title: maVar,
+							start: result.start,
+							end: result.end,
+							endReal: result.endReal,
+							alert: 0, 
 						},
 						success: function () {
 							calendar.fullCalendar( 'refetchEvents' );
@@ -138,7 +174,7 @@
 				},
 				// on modifie les évenements 
 				editable: true,
-				eventResize: function ( event ) {
+				/* eventResize: function ( event ) {
 					if ( event.title == maVar ) {
 
 						var start = $.fullCalendar.formatDate( event.start, "Y-MM-DD HH:mm:ss" );
@@ -162,7 +198,7 @@
 					} else {
 						alert( "Attention le congé n'a pas été modifié, veuillez séléctionnez votre propre congé" )
 					}
-				},
+				}, */
 				eventDrop: function ( event ) {
 
 					if ( event.title == maVar ) {
@@ -171,14 +207,18 @@
 						var end = $.fullCalendar.formatDate( event.end, "Y-MM-DD HH:mm:ss" );
 						var title = event.title;
 						var id = event.id;
+						var result = getDateReal( event.start, event.end );
 						$.ajax( {
 							url: "../evenement/update.php",
 							type: "POST",
 							data: {
 								title: title,
-								start: start,
-								end: end,
-								id: id
+								start: result.start,
+								end: result.end,
+								endReal: result.endReal,
+								alert: 0,
+								id: id,
+								
 							},
 							success: function () {
 								calendar.fullCalendar( 'refetchEvents' );
@@ -186,7 +226,7 @@
 							}
 						} );
 					} else {
-
+								
 						$.ajax( {
 							url: "../evenement/load.php",
 							type: "GET",
