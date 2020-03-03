@@ -9,7 +9,7 @@ if(isset($_POST["id"]))
 { 
  $query = "
  UPDATE events 
- SET title=:title, start_event=:start_event, end_event=:end_event, endReal=:endReal
+ SET title=:title, start_event=:start_event, end_event=:end_event, endReal=:endReal, alert=: alert,
  WHERE id=:id ";
 	
  $statement = $connect->prepare($query);
@@ -19,6 +19,7 @@ if(isset($_POST["id"]))
    ':start_event' => $_POST['start'],
    ':end_event' => $_POST['end'],
    ':endReal' =>  $_POST['endReal'],
+   ':alert' => $_POST['alert'],
    ':id'   => $_POST['id'],
    
   )

@@ -21,20 +21,7 @@ session_start(); ?>
   <script src="../js/jquery-3.4.1.min.js"></script>
   <script src="../js/moment.js"></script>
   <script src="../js/fullcalendar.js"></script>
-
-  <style> 
-	.adminColor{
-
-		background-color : green;
-
-	} 
-	
-	.congeColor{
-
-		color : white !important;
-	}
-
-	</style>
+  <link href='../css/custom.css' rel='stylesheet' />
 
 
   <script>
@@ -79,7 +66,7 @@ session_start(); ?>
 					element.addClass("congeColor");
 
 
-          $.ajax({
+      /*    $.ajax({
             url: "../evenement/credit.php",
             type: "GET",
             success: function(data) {
@@ -87,8 +74,9 @@ session_start(); ?>
               $("#count").text(data)
               console.log(arguments)
             }
-          })
-        },
+          }) */
+          
+        }, 
         // on affiche les événements   
         events: '../evenement/load.php',
 
@@ -182,7 +170,7 @@ session_start(); ?>
               },
               success: function() {
                 calendar.fullCalendar('refetchEvents');
-                alert("Event Removed");
+                alert("Congé supprimé");
               }
             })
           }

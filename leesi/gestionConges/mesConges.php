@@ -21,19 +21,7 @@
 	 <script src="../js/fullcalendar.js"></script>
 	<script src='../js/locales-all.js'></script>
 	<script src='../js/fr.js'></script>
-	<style> 
-	.adminColor{
-
-		background-color : green;
-
-	} 
-	
-	.congeColor{
-
-		color : white !important;
-	}
-
-	</style>
+	<link href='../css/custom.css' rel='stylesheet' />
 
 
 	<?php  $long = strlen($_SESSION['iden']) ?>
@@ -71,7 +59,6 @@
 			var credit = <?php echo json_encode($reste); ?>;
 			var maVar = <?php echo json_encode($rest); ?>;
 			var user = maVar;
-
 
 			$.ajax( {
 				url: "../evenement/credit.php",
@@ -133,7 +120,7 @@
 							$( "#count" ).text( data )
 							console.log( arguments )
 						}
-					} )
+					} ) 
 				},
 
 				header: {

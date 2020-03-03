@@ -27,7 +27,6 @@ try {
 				':alert' => $_POST['alert']
 			)
 		);
-
 	
 		error_log("insert.php ok ".$_POST['title']." " .$_POST['start']." " .$_POST['end']." " .$_POST['endReal']." " .$_POST['alert'] );
 
