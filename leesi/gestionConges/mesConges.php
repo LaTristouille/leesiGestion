@@ -95,7 +95,8 @@
 					// calendrier Ok
 					
 					var duration = moment.duration( event.end - event.start ).days();
-					element.find( '.fc-title' ).append(" " + duration );
+					/* element.find( '.fc-title' ).append(" " + duration ); */
+
 					if (event.alert==1 ) {
 						
 						element.addClass("adminColor")
