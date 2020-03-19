@@ -8,9 +8,9 @@
 	<link href='../identification/core/main.css' rel='stylesheet'/>
 	<link href='../css/cssErreur.css' rel='stylesheet'/>
 	<link href='../identification/daygrid/main.css' rel='stylesheet'/>
+        
 	<script src='../identification/core/main.js'></script>
 	<script src='../identification/daygrid/main.js'></script>
-
 	<script src='../identification/interaction/main.esm.js'></script>
 	<script src='../identification/interaction/main.min.js'></script>
 	<script src='../identification/interaction/main.js'></script>
@@ -22,10 +22,6 @@
 	<script src='../js/locales-all.js'></script>
 	<script src='../js/fr.js'></script>
 	<link href='../css/custom.css' rel='stylesheet' />
-
-
-	<?php  $long = strlen($_SESSION['iden']) ?>
-	<?php $rest = substr($_SESSION['iden'], -$long); ?>
 
 	<script>
 
@@ -51,14 +47,21 @@
 		}
 
 		$( document ).ready( function () {
+                    
+                        //on récupère l'identifiants via le $_SESSION qu'on affecte dans une variable php
+                        <?php  $long = strlen($_SESSION['iden']) ?>
+                        <?php $rest = substr($_SESSION['iden'], -$long); ?>
 
-			//on récupère le reste des jours de congés 
+
+			 //on récupère le nombre des jours de congés via le $_SESSION qu'on affecte dans une variable php
 			<?php  $longe = strlen($_SESSION['Credit']) ?>
 			<?php $reste = substr($_SESSION['Credit'], -$long); ?>
 
+
+                        //on traduit les objets Json en Js
 			var credit = <?php echo json_encode($reste); ?>;
 			var maVar = <?php echo json_encode($rest); ?>;
-			var user = maVar;
+			var user = maVar;   
 
 			$.ajax( {
 				url: "../evenement/credit.php",
@@ -74,15 +77,7 @@
 			} )
 
 			var calendar = $('#calendar').fullCalendar( {
-			/*	defaultAllDayEventDuration: {
-					days: 1
-				},
-				weekends: true,
-				editable: true,
-				locale: 'fr',
-				eventColor: '#378006',
-				allDayDefault: false, */
-
+			
 				editable:true,
 				header:{
 				left:'prev,next today',
@@ -92,7 +87,6 @@
 
 				//récupérer le nombre de jours de congés pris avec event render
 				eventRender: function ( event, element, view ) {
-					// calendrier Ok
 					
 					var duration = moment.duration( event.end - event.start ).days();
 					/* element.find( '.fc-title' ).append(" " + duration ); */
@@ -160,33 +154,7 @@
 						}
 					} )
 				},
-				// on modifie les évenements 
-				editable: true,
-				/* eventResize: function ( event ) {
-					if ( event.title == maVar ) {
-
-						var start = $.fullCalendar.formatDate( event.start, "Y-MM-DD HH:mm:ss" );
-						var end = $.fullCalendar.formatDate( event.end, "Y-MM-DD HH:mm:ss" );
-						var title = event.title;
-						var id = event.id;
-						$.ajax( {
-							url: "../evenement/update.php",
-							type: "POST",
-							data: {
-								title: title,
-								start: start,
-								end: end,
-								id: id
-							},
-							success: function () {
-								calendar.fullCalendar( 'refetchEvents' );
-								alert( 'Congé bien modifié' );
-							}
-						} )
-					} else {
-						alert( "Attention le congé n'a pas été modifié, veuillez séléctionnez votre propre congé" )
-					}
-				}, */
+				
 				eventDrop: function ( event ) {
 
 					if ( event.title == maVar ) {
@@ -223,7 +191,6 @@
 							}
 						} )
 
-
 						alert( "Le congé n'a pas été modifié, veuillez séléctionnez votre propre congé" )
 					}
 				},
@@ -240,19 +207,6 @@
 							},
 							success: function () {
 								calendar.fullCalendar( 'refetchEvents' );
-								$.ajax( {
-				url: "../evenement/credit.php",
-				type: "POST",
-				data: {
-					credit: credit,
-					user: user
-				},
-				success: function ( data ) {
-					$( "#count" ).text( data )
-					console.log( arguments )
-				}
-			} )
-
 								alert( "Congé supprimé" );
 							}
 						} )
