@@ -26,21 +26,11 @@ session_start();
     $(document).ready(function() {
       var calendar = $('#calendar').fullCalendar({
         header: {
-          left: 'prev,next today',
+         left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay'
+          right: '',
         },
         events: '../evenement/loadAbsences.php',
-
-        eventRender: function(event, element, view) {
-
-          element.addClass("adminColor")
-
-
-          element.addClass("congeColor");
-        },
-
-
       })
     });
     

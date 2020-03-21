@@ -19,8 +19,6 @@
 	<script src="../js/jquery-3.4.1.min.js"></script>
 	 <script src='../js/moment.js'></script> 
 	 <script src="../js/fullcalendar.js"></script>
-	<script src='../js/locales-all.js'></script>
-	<script src='../js/fr.js'></script>
 	<link href='../css/custom.css' rel='stylesheet' />
 
 	<script>
@@ -63,26 +61,13 @@
 			var maVar = <?php echo json_encode($rest); ?>;
 			var user = maVar;   
 
-			$.ajax( {
-				url: "../evenement/credit.php",
-				type: "POST",
-				data: {
-					credit: credit,
-					user: user
-				},
-				success: function ( data ) {
-					$( "#count" ).text( data )
-					console.log( arguments )
-				}
-			} )
-
 			var calendar = $('#calendar').fullCalendar( {
 			
 				editable:true,
 				header:{
 				left:'prev,next today',
 				center:'title',
-				right:'month,agendaWeek,agendaDay'
+				right:''
 				},
 
 				//récupérer le nombre de jours de congés pris avec event render
@@ -157,7 +142,7 @@
 				
 				eventDrop: function ( event ) {
 
-					if ( event.title == maVar ) {
+					if ( event.title == maVar && event.alert == 0 ) {
 
 						var start = $.fullCalendar.formatDate( event.start, "Y-MM-DD HH:mm:ss" );
 						var end = $.fullCalendar.formatDate( event.end, "Y-MM-DD HH:mm:ss" );
@@ -191,13 +176,13 @@
 							}
 						} )
 
-						alert( "Le congé n'a pas été modifié, veuillez séléctionnez votre propre congé" )
+						alert( "Le congé n'a pas été modifié, veuillez séléctionnez votre propre congé pas encore validé" )
 					}
 				},
 
 				// on supprime les évenements
 				eventClick: function ( event ) {
-					if ( confirm( "Voulez vous vraiment supprimer ce congé ?" ) && ( event.title == maVar ) ) {
+					if ( confirm( "Voulez vous vraiment supprimer ce congé ?" ) && ( event.title == maVar ) && (event.alert==0)) {
 						var id = event.id;
 						$.ajax( {
 							url: "../evenement/delete.php",
@@ -211,7 +196,7 @@
 							}
 						} )
 					} else {
-						alert( "Le congé n'a pas été supprimé, veuillez séléctionnez votre propre congé" )
+						alert( "Le congé n'a pas été supprimé, veuillez séléctionnez votre propre congé pas encore validé" )
 					}
 				},
 			} );
@@ -241,17 +226,24 @@ if (mysqli_connect_errno()) {
     exit();
 }  
 	  ?>
+    
 
 	<input type="button" id="retour" onclick=window.location.href='../identification/congesAbsences.php' ; value="Retour">
 
 	<input type="button" id="deco" onclick=window.location.href='../identification/employe' ; session_destroy() ; value="Déconnexion">
-	<p id="t">
+	
+        <br> <br> <input id="legende"  > Congé en attente de validation  <br>  
+        
+        <input id="legende2" > Congé validé  
+      
+        
+        <p id="t">  
 		<?php echo $_SESSION['iden'], ' il vous reste' ?> <span id="count"> </span> jour(s) de congés à prendre </p>
 
 	<p id="erreur">
 		<?php   /*/si $_SESSION['conge'] créé par credit.php est superieur à 20 alors /*/
 	
-		if ( isset($_SESSION['conge']) &&  $_SESSION['conge']>20) { 
+                if ( isset($_SESSION['conge']) && $_SESSION['conge']>20 ) { 
 	
 	?>
 		<script>

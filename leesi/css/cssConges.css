@@ -20,7 +20,7 @@ font-style: normal;
 	font-size: 1.5em;
 	display : block;
 	text-align: center;
-	margin-top: 50px;
+	margin-top: 20px;
 	margin-left: auto;
     margin-right: auto }
 
@@ -60,3 +60,16 @@ font-style: normal;
 	height:30px;
 }
 
+#legende {
+    height: 30px;
+    width: 80px;
+    background: blue;
+    margin-left: 20px;
+}
+
+#legende2 {
+    height: 30px;
+    width: 80px;
+    background: green;
+    margin-left: 20px;
+}

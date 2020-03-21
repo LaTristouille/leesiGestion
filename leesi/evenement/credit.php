@@ -1,22 +1,11 @@
 <?php
 require_once( '../db/connexion.php' );
-require_once( '../db/connexionPDO.php' );
+require_once( '../db/connexionPDO.php' ); 
 session_start();
 
 $connect = $PDO;
 
 $User = $_POST[ 'user' ];
-
-$query = "SELECT * FROM events WHERE title='$User'";
-
-$statement = $connect->prepare( $query );
-
-$statement->execute();
-
-$result = $statement->fetchAll();
-
-$count = 0;
-/*
 
 /*---------------------------------------------------------------*/
 /*
@@ -85,12 +74,10 @@ function nb_jours( $date1, $date2 ) {
 			date( "z", mktime( 0, 0, 0, 11, 1, $year ) ), // Toussaint
 			date( "z", mktime( 0, 0, 0, 11, 11, $year ) ), // Armistice
 			date( "z", mktime( 0, 0, 0, 12, 25, $year ) ), // Noel
-
 			// Dates basées sur Paques
 			date( "z", mktime( 0, 0, 0, $easterMonth, $easterDay + 1, $easterYear ) ), // Lundi de Paques
 			date( "z", mktime( 0, 0, 0, $easterMonth, $easterDay + 39, $easterYear ) ), // Ascension
 			date( "z", mktime( 0, 0, 0, $easterMonth, $easterDay + 50, $easterYear ) ) // Lundi de Pentecote
-
 		);
 
 		// si c'est la première année -> on commence par la date de depart; 
@@ -160,7 +147,7 @@ foreach ( $connect->query( $demande3 ) as $row ) {
 	// On remplace les tiret par des espaces	V									 	
 	$date1 = str_replace( "-", " ", $dmy1 );
 
-	// On récupère le mois V
+	// On récupère le mois 
 	$mois = substr( $date1, 2, -5 );
 	// Et on le traduit litérallement
 	$array = array( ' January', ' February', ' March', ' April', ' May', ' June', ' July', ' August', ' September', ' October', ' November', ' December' );
@@ -184,9 +171,9 @@ foreach ( $connect->query( $demande3 ) as $row ) {
 	$mois2 = substr( $date2, 2, -5 );
 	// Et on le traduit litérallement 
 	$array = array( ' January', ' February', ' March', ' April', ' May', ' June', ' July', ' August', ' September', ' October', ' November', ' December' );
-	$newMois = $array[ $mois2 - 1 ];
+	$newMois2 = $array[ $mois2 - 1 ];
 
-	$date2 = str_replace( $mois2, $newMois, $date2 );
+	$date2 = str_replace( $mois2, $newMois2, $date2 );
 
 	$congePris = $congePris + nb_jours( $date1, $date2 );
 
@@ -196,8 +183,6 @@ foreach ( $connect->query( $demande3 ) as $row ) {
 $_SESSION[ 'conge' ] = $congePris;
 
 //on récupère les crédits dans bdd
-
-$link = $cnleesi;
 
 $result = "SELECT * FROM id WHERE User='$User'";
 

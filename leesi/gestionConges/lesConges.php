@@ -8,11 +8,11 @@ session_start(); ?>
 
   <link href='../css/cssConges.css' rel='stylesheet' />
   <link href='../identification/core/main.css' rel='stylesheet' />
+  <link href='../css/cssErreur.css' rel='stylesheet'/>
   <link href='../identification/daygrid/main.css' rel='stylesheet' />
 
   <script src='../identification/core/main.js'></script>
   <script src='../identification/daygrid/main.js'></script>
-
   <script src='../identification/interaction/main.esm.js'></script>
   <script src='../identification/interaction/main.min.js'></script>
   <script src='../identification/interaction/main.js'></script>
@@ -22,8 +22,7 @@ session_start(); ?>
   <script src="../js/moment.js"></script>
   <script src="../js/fullcalendar.js"></script>
   <link href='../css/custom.css' rel='stylesheet' />
-
-
+  
   <script>
     function getDateReal(startCalendar, endCalendar) {
 
@@ -49,11 +48,14 @@ session_start(); ?>
 
     $(document).ready(function() {
       var calendar = $('#calendar').fullCalendar({
+          buttonText: {
+    today:    'Aujourd\'hui',
+},
         editable: true,
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay'
+          right: ''
         },
 
         eventRender: function(event, element, view) {
@@ -64,17 +66,6 @@ session_start(); ?>
 					}
 
 					element.addClass("congeColor");
-
-
-      /*    $.ajax({
-            url: "../evenement/credit.php",
-            type: "GET",
-            success: function(data) {
-              //recup de
-              $("#count").text(data)
-              console.log(arguments)
-            }
-          }) */
           
         }, 
         // on affiche les événements   
@@ -86,8 +77,7 @@ session_start(); ?>
 
         select: function(start, end)
 
-        {
-
+        {     
           var title = prompt("Nom de l'employé en congé :");
 
           if (title) {
@@ -114,25 +104,7 @@ session_start(); ?>
             })
           }
         },
-        // on modifie les évenements 
-        editable: true,
-        /* eventResize:function(event)
-    {
-     var title = event.title;
-     var id = event.id;
-     var result = getDateReal( event.start, event.end );
-     $.ajax( {
-							url: "../evenement/update.php",
-							type: "POST",
-							data: {
-								title: title,
-								start: result.start,
-								end: result.end,
-								endReal: result.endReal,
-								id: id,
-								
-							},
-    })}, */
+      
         eventDrop: function(event) {
           var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
           var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
@@ -157,10 +129,33 @@ session_start(); ?>
             }
           })
         },
-
         // on supprime les évenements
-        eventClick: function(event) {
-          if (confirm("Voulez-vous vraiment supprimer le congé?")) {
+        eventClick: function(event) { if (event.alert == 0 && confirm("Valider ce congé?")) { 
+                 var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
+          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
+          var title = event.title;
+          var id = event.id;
+          var result = getDateReal(event.start, event.end);
+            
+         $.ajax({
+            url: "../evenement/update.php",
+            type: "POST",
+            data: {
+              title: title,
+              start: result.start,
+              end: result.end,
+              endReal: result.endReal,
+              alert : 1,
+              id: id,
+            },   
+            success: function() {
+              calendar.fullCalendar('refetchEvents');
+              alert("Congé validé");
+            }
+          })
+                
+        } else {
+          if (confirm("Supprimer le congé?")) {
             var id = event.id;
             $.ajax({
               url: "../evenement/delete.php",
@@ -173,7 +168,7 @@ session_start(); ?>
                 alert("Congé supprimé");
               }
             })
-          }
+          } }
         },
 
       });
@@ -198,6 +193,11 @@ session_start(); ?>
   <input type="button" id="retour" onclick=window.location.href='../identification/congesAbs2.php' ; value="Retour">
 
   <input type="button" id="deco" onclick=window.location.href='../identification/admin.php' ; value="Déconnexion">
+    
+  <br> <br> <input id="legende"  > Congé en attente de validation  <br>  
+        
+        <input id="legende2" > Congé validé  
+      
 
   <p id="t"><?php echo ("Gestion des congés")
             ?>

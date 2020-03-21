@@ -32,17 +32,9 @@ session_start();
         header: {
           left: 'prev,next today',
           center: 'title',
-          right: 'month,agendaWeek,agendaDay'
+          right: ''
         },
         events: '../evenement/loadAbsences.php',
-
-        eventRender: function(event, element, view) {
-
-          element.addClass("adminColor")
-
-
-          element.addClass("congeColor");
-        },
 
         selectable: true,
         selectHelper: true,
@@ -67,26 +59,6 @@ session_start();
           }
         },
         editable: true,
-        eventResize: function(event) {
-          var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
-          var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
-          var title = event.title;
-          var id = event.id;
-          $.ajax({
-            url: "../evenement/updateAbsences.php",
-            type: "POST",
-            data: {
-              title: title,
-              start: start,
-              end: end,
-              id: id
-            },
-            success: function() {
-              calendar.fullCalendar('refetchEvents');
-              alert('Absence modifiée');
-            }
-          })
-        },
 
         eventDrop: function(event) {
           var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
