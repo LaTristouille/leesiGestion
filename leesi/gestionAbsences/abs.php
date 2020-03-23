@@ -1,6 +1,22 @@
-<?php require_once('../db/connexion.php');
+<?php 
+/**
+ * Calendrier des absences pour les employés / abs.php
+ *
+ * @package     No package
+ * @subpackage  No subpackage
+ * @author      Tristan Varciat
+ * @version     v.1.1 (23/03/2020)
+ * @copyright   Copyright (c) 2020, Varciat
+ */
+
+require_once('../db/connexion.php');
 session_start();
 ?>
+
+/**
+ * Intégration des scripts et css
+ */
+ 
 <html lang='en'>
 
 <head>
@@ -21,15 +37,28 @@ session_start();
   <script src="../js/jquery-3.4.1.min.js"></script>
   <script src="../js/moment.js"></script>
   <script src="../js/fullcalendar.js"></script>
+  
+  /**
+ * Affichage du calendrier
+ *
+ * Paramètrage du rendu, avec les boutons
+ */
+  
 
   <script>
     $(document).ready(function() {
       var calendar = $('#calendar').fullCalendar({
-        header: {
-         left: 'prev,next today',
-          center: 'title',
-          right: '',
-        },
+       height: 600,
+
+				buttonText: {
+					today: 'Aujourd\'hui',
+				},
+				editable: true,
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: ''
+				},
         events: '../evenement/loadAbsences.php',
       })
     });
@@ -37,9 +66,8 @@ session_start();
   </script>
 </head>
 
-<body>
+<body class="pageCalendar">
 
-  <br />
   <input type="button" id="retour" onclick=window.location.href='../identification/congesAbsences.php' ; value="Retour">
 
   <input type="button" id="deco" onclick=window.location.href='../identification/employe' ; value="Déconnexion">

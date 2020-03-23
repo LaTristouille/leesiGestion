@@ -24,7 +24,11 @@
       <link href='../css/custom.css' rel='stylesheet' />
 
       <script>
-          
+          /**
+ * focntion getDateReal
+ *
+ * Permet de retirer un jour sur la date de l'évènement
+ */
                 function getDateReal(startCalendar, endCalendar) {
 
                     var start = $.fullCalendar.formatDate(startCalendar, "Y-MM-DD");
@@ -48,16 +52,20 @@
                   }
 
         $(document).ready(function() {
+            
           var calendar = $('#calendar').fullCalendar({
-            buttonText: {
-              today: 'Aujourd\'hui',
-            },
-            editable: true,
-            header: {
-              left: 'prev,next today',
-              center: 'title',
-              right: ''
-            },
+              
+           height: 600,
+
+				buttonText: {
+					today: 'Aujourd\'hui',
+				},
+				editable: true,
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: ''
+				},
 
             eventRender: function(event, element, view) {
 
@@ -107,6 +115,7 @@
             },
 
             eventDrop: function(event) {
+                
               var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
               var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
               var title = event.title;
@@ -132,6 +141,7 @@
             },
             // on supprime les évenements
             eventClick: function(event) {
+                
               if (event.alert == 0 && confirm("Valider ce congé?")) {
                 var start = $.fullCalendar.formatDate(event.start, "Y-MM-DD HH:mm:ss");
                 var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
@@ -177,35 +187,30 @@
           });
         });
       </script>
-    </head>
-
-    <body>
-      <br />
-
-      <br />
-      <div class="container">
-      </div>
-    </body>
-
+  
     </html>
     </script>
-    </head>
 
-    <body>
+    <body class="pageCalendar">
 
       <input type="button" id="retour" onclick=window.location.href='../identification/congesAbs2.php' ; value="Retour">
 
       <input type="button" id="deco" onclick=window.location.href='../identification/admin.php' ; value="Déconnexion">
+      
+      <div class="subheader">
 
-      <br> <br> <input id="legende"> Congé en attente de validation <br>
+  <div class="legende"> <input id="legende" readonly disabled> Congé en attente de validation <br>
 
-      <input id="legende2"> Congé validé
-
-
+			<input id="legende2" readonly disabled> Congé validé </div>
+<div class="title">
       <p id="t"><?php echo ("Gestion des congés")
                 ?>
-      </p> </br>
+      </p> 
+      </div>
 
+      
+      </div>
+      
       <div id='calendar'></div>
 
     </body>

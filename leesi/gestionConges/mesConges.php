@@ -1,5 +1,19 @@
-<?php require_once('../db/connexion.php');
-session_start(); ?>
+<?php /**
+ * mesConges.php
+ * 
+ * Calendrier des congés pour employés
+ * 
+ * @packages LEESI
+ * @subpackage Conge
+ * @category projet 
+ * @author Tristan Varciat 
+ */
+
+require_once('../db/connexion.php');
+session_start();
+
+
+?>
 
 <html lang='fr'>
 
@@ -24,6 +38,12 @@ session_start(); ?>
 	<link href='../css/custom.css' rel='stylesheet' />
 
 	<script>
+            
+             /**
+ * focntion getDateReal
+ *
+ * Permet de retirer un jour sur la date de l'évènement
+ */
 		function getDateReal(startCalendar, endCalendar) {
 
 			var start = $.fullCalendar.formatDate(startCalendar, "Y-MM-DD");
@@ -58,13 +78,14 @@ session_start(); ?>
 			<?php $reste = substr($_SESSION['Credit'], -$long); ?>
 
 
-			//on traduit les objets Json en Js
+			//On récupère dans une variable JS les valeurs php calculée
 			var credit = <?php echo json_encode($reste); ?>;
 			var maVar = <?php echo json_encode($rest); ?>;
-			var user = maVar; 
+			var user = maVar;
 
 			var calendar = $('#calendar').fullCalendar({
 
+				height: 600,
 
 				buttonText: {
 					today: 'Aujourd\'hui',
@@ -109,7 +130,6 @@ session_start(); ?>
 					})
 				},
 
-				
 				// on affiche les événements   
 				events: '../evenement/load.php',
 
@@ -205,19 +225,13 @@ session_start(); ?>
 	</script>
 </head>
 
-<body>
-	<br />
-	<br />
-	<div class="container">
-	</div>
-</body>
-
 </html>
 
 </script>
 </head>
 
-<body>
+<body class="pageCalendar">
+
 
 	<?php
 
@@ -230,34 +244,24 @@ session_start(); ?>
 	}
 	?>
 
-
 	<input type="button" id="retour" onclick=window.location.href='../identification/congesAbsences.php' ; value="Retour">
 
 	<input type="button" id="deco" onclick=window.location.href='../identification/employe' ; session_destroy() ; value="Déconnexion">
 
-	<br> <br> <input id="legende"> Congé en attente de validation <br>
+	<div class="subheader">
+		
+            <div class="legende"> <input id="legende" readonly disabled> Congé en attente de validation <br>
 
-	<input id="legende2"> Congé validé
+			<input id="legende2" readonly disabled> Congé validé </div>
 
+		<div class="title">
 
-	<p id="t">
-		<?php echo $_SESSION['iden'], ' il vous reste' ?> <span id="count"> </span> jour(s) de congés à prendre </p>
+			<p id="t">
+				<?php echo $_SESSION['iden'], ' il vous reste' ?> <span id="count"> </span> jour(s) de congés à prendre </p>
 
-	<p id="erreur">
-		<?php   /*/si $_SESSION['conge'] créé par credit.php est superieur à 20 alors /*/
-
-		if (isset($_SESSION['conge']) && $_SESSION['conge'] > 20) {
-
-		?>
-			<script>
-				alert("Attention vous avez pris des congés en trop, veuiller en supprimer")
-			</script>
-		<?php
-
-			echo "Attention vous avez pris ", $_SESSION['conge'] - 20, " jour(s) de congés en trop, veuillez en supprimer";
-		}  ?>
-
-	</p>
+			
+		</div>
+	</div>
 
 	<div id='calendar'></div>
 

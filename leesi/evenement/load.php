@@ -1,7 +1,17 @@
 
 <?php
 
-//load.php
+/**
+ * Test de descritption short
+ * 
+ * TEST LONG DEscription 
+ * 
+ * @packages LEESI
+ * @subpackage Conge
+ * @category projet 
+ * @author Tristan Varciat tristan.varciat@gmail.com
+ */
+
 
 try {$connect = new PDO('mysql:host=localhost;dbname=leesi', 'root', '');} 
 catch (Exception $e)

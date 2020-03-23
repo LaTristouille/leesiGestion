@@ -29,11 +29,17 @@ session_start();
   <script>
     $(document).ready(function() {
       var calendar = $('#calendar').fullCalendar({
-        header: {
-          left: 'prev,next today',
-          center: 'title',
-          right: ''
-        },
+      height: 600,
+
+				buttonText: {
+					today: 'Aujourd\'hui',
+				},
+				editable: true,
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: ''
+				},
         events: '../evenement/loadAbsences.php',
 
         selectable: true,
@@ -102,14 +108,13 @@ session_start();
   </script>
 </head>
 
-<body>
-  <br />
+<body class="pageCalendar">
+    
   <input type="button" id="retour" onclick=window.location.href='../identification/congesAbs2.php' ; value="Retour">
 
   <input type="button" id="deco" onclick=window.location.href='../identification/admin' ; value="Déconnexion">
 
-  <p id="t"><?php echo ("Calendrier des absences")
-            ?>
+  <p id="t"><?php echo ("Calendrier des absences") ?>
   </p>
 
   <div id='calendar'></div>

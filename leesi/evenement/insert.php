@@ -10,7 +10,7 @@ try {
 }
 
 
-	if (isset($_POST["title"]) && $_SESSION['conge'] < 20) {
+	if (isset($_POST["title"])) {
 		error_log("insert.php");
 		$query = "
  INSERT INTO events 

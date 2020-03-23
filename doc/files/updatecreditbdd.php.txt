@@ -1,0 +1,16 @@
+<?php
+
+$connect = new PDO('mysql:host=localhost;dbname=leesi', 'root', '');
+
+$User = 'Tristan';
+
+$query2 = "UPDATE id SET Credit=$resteCredit WHERE User='$User'";
+	if(mysqli_query($link, $query2)){ 
+    echo "Record was updated successfully."; mysqli_close($link);
+		
+	} else { 
+    echo "ERROR: Could not able to execute $query2. "  
+                   . mysqli_error($link); mysqli_close($link);
+} 	
+
+?>
